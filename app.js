@@ -8,6 +8,7 @@ require('dotenv').config({path: './sendgrid.env'})
 
 const app = express();
 
+
 //tells app to look for build folder that contains build of react app
 app.use(express.static(path.join(__dirname, 'build')))
 
@@ -61,5 +62,9 @@ debugger
 
 });
 
+//Tries heroku.  If null then goes to 3000
+const port = process.env.PORT || 3000
 
-app.listen(3030, '0.0.0.0');
+app.listen(port, () => {
+    console.log(`Server is up on port ${port}.`)
+})
